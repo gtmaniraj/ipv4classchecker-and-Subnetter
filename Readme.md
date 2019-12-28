@@ -1,1 +1,1 @@
-This is my first Python Projec
+This is my first Python Project.
