@@ -233,12 +233,23 @@ def Testing(cidr,extracidr,first_byte,second_byte,third_byte,fourth_byte,type):
             if(lsm>0 and lsm<=255 and (int(cidr) in range(25,31)) ):
                 blocksize=256-lsm
                 print("Blocksize of the Network is ",blocksize)
-                while  not (fourth_byte==256):
+                while  not (second_byte==256):
                     print(first_byte,".",second_byte,".",third_byte,".",fourth_byte, end="")
                     print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte+1, end="  ------")
                     fourth_byte+=int(blocksize)
-                    print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte-int(2), end="")
-                    print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte-1)
+                    if(fourth_byte<=256):
+                        print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte-2, end="")
+                        print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte-1)
+                    if(fourth_byte==256):
+                        fourth_byte=0
+                        third_byte+=1
+                        if(third_byte==256):
+                            third_byte=0
+                            second_byte+=1
+                            if(second_byte==256):
+                                break
+                        #print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte-2, end="")
+                        #print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte-1)
 
     
             if int(cidr)==31:
@@ -284,13 +295,22 @@ def Testing(cidr,extracidr,first_byte,second_byte,third_byte,fourth_byte,type):
           if(lsm>0 and lsm<=255 ):
             blocksize=256-lsm
             print("Blocksize of the Network is ",blocksize)
-            while  not (fourth_byte==256):
+            while  not (third_byte==256):
                     print(first_byte,".",second_byte,".",third_byte,".",fourth_byte, end="")
                     print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte+1, end="  ------")
                     fourth_byte+=int(blocksize)
-                    print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte-int(2), end="")
+                    if(fourth_byte<=256):
+                        print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte-2, end="")
+                        print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte-1)
+                    if(fourth_byte==256):
+                        fourth_byte=0
+                        third_byte+=1
+                        if(third_byte==256):
+                            break
+                            
+                    #print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte-int(2), end="")
                   
-                    print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte-1)
+                    #print("\t",first_byte,".",second_byte,".",third_byte,".",fourth_byte-1)
 
     
         if int(cidr)==31:
